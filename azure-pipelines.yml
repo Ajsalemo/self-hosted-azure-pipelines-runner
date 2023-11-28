@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: container-apps
 
 steps:
 - script: cat /etc/os-release
