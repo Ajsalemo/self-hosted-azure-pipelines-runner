@@ -11,4 +11,4 @@ pool:
 
 steps:
 - script: cat /etc/os-release
-  displayName: 'Check OS version'
+  displayName: 'Check current OS version'
