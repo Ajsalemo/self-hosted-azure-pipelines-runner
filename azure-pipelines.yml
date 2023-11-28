@@ -12,3 +12,7 @@ pool:
 steps:
 - script: cat /etc/os-release
   displayName: 'Check current OS version'
+
+
+- script: az -v
+  displayName: 'Check if AZ CLI is installed'
