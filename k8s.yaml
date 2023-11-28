@@ -1,0 +1,29 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledJob
+metadata:
+  name: azure-pipelines
+  namespace: default
+spec:
+  minReplicaCount: 1            
+  maxReplicaCount: 1 
+  jobTargetRef:
+    template:
+      spec:
+        containers:
+        - name: azure-pipelines
+          env:
+          - name: AZP_TOKEN
+            value: "your_pat_token"
+          - name: AZP_URL
+            value: "https://dev.azure.com/someorg"
+          - name: AZP_POOL
+            value: "container-apps"
+          image: azure-pipelines-agent:1.0
+          imagePullPolicy: IfNotPresent
+        restartPolicy: Never
+  triggers:
+  - type: azure-pipelines
+    metadata:
+      organizationURLFromEnv: "AZP_URL"
+      personalAccessTokenFromEnv: "AZP_TOKEN"
+      poolName: "container-apps"
